@@ -1,0 +1,231 @@
+# XcodeGen Configuration for CleanViewVPN
+# Run 'xcodegen generate' to create Xcode project
+
+name: CleanViewVPN
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: 16.0
+  developmentLanguage: en
+  xcodeVersion: 15.0
+  generateEmptyDirectories: true
+  groupSortPosition: top
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+
+fileGroups:
+  - CleanViewVPN
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+    ENABLE_BITCODE: false
+    DEVELOPMENT_TEAM: YOUR_TEAM_ID
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_OPTIMIZATION_LEVEL: -O
+    ENABLE_TESTABILITY: true
+    GCC_PREPROCESSOR_DEFINITIONS:
+      DEBUG: 1
+      RELEASE: 0
+
+targets:
+  # Main Host App
+  CleanView:
+    type: application
+    platform: iOS
+    deploymentTarget: 16.0
+    sources:
+      - path: CleanViewVPN/CleanView
+        excludes:
+          - "**/*.md"
+        createIntermediateGroups: true
+      - path: CleanViewVPN/Shared
+        createIntermediateGroups: true
+    resources:
+      - path: CleanViewVPN/CleanView/Resources
+        excludes:
+          - "**/*.swift"
+      - path: CleanViewVPN/CleanView/Assets.xcassets
+    settings:
+      base:
+        PRODUCT_NAME: CleanView
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.cleanview
+        INFOPLIST_FILE: CleanViewVPN/CleanView/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: CleanViewVPN/CleanView/Resources/CleanView.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: true
+        DEVELOPMENT_ASSET_PATHS: CleanViewVPN/CleanView/Preview\\ Content
+    dependencies:
+      - target: CleanViewVPN
+      - target: CleanViewBlocker
+    preBuildScripts:
+      - name: SwiftLint
+        script: |
+          if which swiftlint >/dev/null; then
+            swiftlint
+          else
+            echo "warning: SwiftLint not installed"
+          fi
+    capabilities:
+      com.apple.ApplicationGroups.iOS:
+        enabled: true
+        groups:
+          - group.com.example.cleanview.shared
+      com.apple.NetworkExtensions.iOS:
+        enabled: true
+      com.apple.BackgroundModes:
+        enabled: true
+        modes:
+          - fetch
+          - processing
+      com.apple.InAppPurchase:
+        enabled: true
+    scheme:
+      testTargets:
+        - CleanViewTests
+      configVariants:
+        - Debug
+        - Release
+      environmentVariables:
+        ENABLE_TESTING: "1"
+
+  # VPN Network Extension
+  CleanViewVPN:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: 16.0
+    sources:
+      - path: CleanViewVPN/CleanViewVPN
+        createIntermediateGroups: true
+      - path: CleanViewVPN/Shared
+        createIntermediateGroups: true
+    settings:
+      base:
+        PRODUCT_NAME: CleanViewVPN
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.cleanview.vpn
+        INFOPLIST_FILE: CleanViewVPN/CleanViewVPN/Info.plist
+        CODE_SIGN_ENTITLEMENTS: CleanViewVPN/CleanViewVPN/CleanViewVPN.entitlements
+        SKIP_INSTALL: true
+    capabilities:
+      com.apple.ApplicationGroups.iOS:
+        enabled: true
+        groups:
+          - group.com.example.cleanview.shared
+      com.apple.NetworkExtensions.iOS:
+        enabled: true
+
+  # Safari Content Blocker Extension
+  CleanViewBlocker:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: 16.0
+    sources:
+      - path: CleanViewVPN/CleanViewBlocker
+        createIntermediateGroups: true
+      - path: CleanViewVPN/Shared
+        createIntermediateGroups: true
+    resources:
+      - path: CleanViewVPN/CleanViewBlockerResources/Rules.json
+    settings:
+      base:
+        PRODUCT_NAME: CleanViewBlocker
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.cleanview.blocker
+        INFOPLIST_FILE: CleanViewVPN/CleanViewBlocker/Info.plist
+        CODE_SIGN_ENTITLEMENTS: CleanViewVPN/CleanViewBlocker/CleanViewBlocker.entitlements
+        SKIP_INSTALL: true
+    capabilities:
+      com.apple.ApplicationGroups.iOS:
+        enabled: true
+        groups:
+          - group.com.example.cleanview.shared
+
+  # Unit Tests Target
+  CleanViewTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: 16.0
+    sources:
+      - path: CleanViewTests
+        createIntermediateGroups: true
+    dependencies:
+      - target: CleanView
+      - target: CleanViewVPN
+      - target: CleanViewBlocker
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.cleanview.tests
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/CleanView.app/CleanView
+
+  # UI Tests Target
+  CleanViewUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: 16.0
+    sources:
+      - path: CleanViewUITests
+        createIntermediateGroups: true
+    dependencies:
+      - target: CleanView
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.cleanview.uitests
+        TEST_TARGET_NAME: CleanView
+
+schemes:
+  CleanView:
+    build:
+      targets:
+        CleanView: all
+        CleanViewVPN: all
+        CleanViewBlocker: all
+      parallelizeBuild: true
+      buildImplicitDependencies: true
+    run:
+      config: Debug
+      commandLineArguments:
+        "-IDEPreferLogStreaming": true
+        enabled: false
+      environmentVariables:
+        - variable: OS_ACTIVITY_MODE
+          value: disable
+          enabled: false
+    test:
+      config: Debug
+      targets:
+        - CleanViewTests
+        - CleanViewUITests
+      gatherCoverageData: true
+      coverageTargets:
+        - CleanView
+        - CleanViewVPN
+        - CleanViewBlocker
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+      revealArchiveInOrganizer: true
+
+  CleanViewVPN:
+    build:
+      targets:
+        CleanViewVPN: all
+    run:
+      config: Debug
+      askForAppToLaunch: true
+      launchAutomaticallySubstyle: 2
+
+  CleanViewBlocker:
+    build:
+      targets:
+        CleanViewBlocker: all
+    run:
+      config: Debug
+      askForAppToLaunch: true
+      launchAutomaticallySubstyle: 2

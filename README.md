@@ -34,21 +34,47 @@ A comprehensive iOS app that combines VPN-based DNS filtering with Safari Conten
 
 ## 🚀 Quick Start
 
+### Automated Setup (Recommended) 🤖
+
 1. **Clone the repository**
    ```bash
    git clone https://github.com/zaq2989/adblock.git
    cd adblock
    ```
 
-2. **Open in Xcode**
-   - Open `CleanViewVPN.xcodeproj` (create following setup guide)
-   - Select your development team
+2. **Run automated setup**
+   ```bash
+   chmod +x setup.sh
+   ./setup.sh
+   ```
+   This will:
+   - Install XcodeGen and SwiftLint
    - Update bundle identifiers
+   - Generate Xcode project
+   - Create test files
+   - Configure build settings
 
-3. **Configure Capabilities**
-   - Add NetworkExtension capability
-   - Configure App Groups
-   - Set up entitlements
+3. **Open and run**
+   ```bash
+   open CleanViewVPN.xcodeproj
+   # or use: make build
+   ```
+
+### Manual Setup (Alternative)
+
+1. **Install XcodeGen**
+   ```bash
+   brew install xcodegen
+   ```
+
+2. **Generate project**
+   ```bash
+   xcodegen generate
+   ```
+
+3. **Open in Xcode**
+   - Select your development team
+   - Update bundle identifiers if needed
 
 4. **Build and Run**
    - Select target device
@@ -161,6 +187,13 @@ Key steps:
 ### Unit Tests
 ```bash
 xcodebuild test -scheme CleanView -destination 'platform=iOS Simulator,name=iPhone 15'
+# or
+make test
+```
+
+### Swift Package Manager Tests
+```bash
+swift test
 ```
 
 ### Real Device Testing
@@ -168,6 +201,32 @@ xcodebuild test -scheme CleanView -destination 'platform=iOS Simulator,name=iPho
 2. Trust developer certificate
 3. Enable VPN in Settings
 4. Enable Content Blocker in Safari settings
+
+## 🛠 Development Commands
+
+The project includes a Makefile for common tasks:
+
+```bash
+make help      # Show available commands
+make setup     # Run initial setup
+make build     # Build the project
+make test      # Run all tests
+make clean     # Clean build artifacts
+make archive   # Create App Store archive
+```
+
+### XcodeGen Commands
+```bash
+xcodegen generate           # Regenerate Xcode project
+xcodegen generate --spec project.yml --use-cache
+```
+
+### Swift Package Manager
+```bash
+swift build                 # Build SPM packages
+swift test                  # Run SPM tests
+swift package update        # Update dependencies
+```
 
 ## 🚢 Deployment
 
