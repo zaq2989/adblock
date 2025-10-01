@@ -1,0 +1,29 @@
+[
+  {
+    "trigger": {
+      "url-filter": ".*"
+    },
+    "action": {
+      "type": "css-display-none",
+      "selector": "div[class*='overlay'], div[class*='modal'], div[class*='popup'], .backdrop, [role='dialog'], .age-gate, .geo-gate, .gdpr, .consent, .cookie-consent"
+    }
+  },
+  {
+    "trigger": {
+      "url-filter": ".*"
+    },
+    "action": {
+      "type": "css-display-none",
+      "selector": "[class*='subscribe'], [id*='subscribe'], .newsletter, .paywall, .adblock"
+    }
+  },
+  {
+    "trigger": {
+      "url-filter": ".*"
+    },
+    "action": {
+      "type": "css-display-none",
+      "selector": "div[style*='position: fixed'][style*='z-index: 1000'], div[style*='position:fixed'][style*='z-index:1000']"
+    }
+  }
+]

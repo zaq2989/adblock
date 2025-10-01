@@ -1,0 +1,139 @@
+# CleanView - Private Ad Blocker & VPN
+
+## Short Description (80 characters)
+Block ads, trackers & annoying overlays. Browse privately with local VPN protection.
+
+## Subtitle (30 characters)
+Privacy-First Ad Blocker
+
+## App Store Description
+
+### Browse the Web Without Interruptions
+
+CleanView combines powerful ad blocking with privacy protection to deliver the clean, fast browsing experience you deserve. No more pop-ups, overlays, or tracking - just the content you want to see.
+
+### 🛡️ Complete Protection
+
+**Network-Level Blocking**
+• Blocks ads and trackers before they load
+• Saves bandwidth and battery life
+• Speeds up page loading by up to 3x
+
+**Visual Cleanup**
+• Removes annoying overlays and pop-ups
+• Eliminates cookie notices and consent forms
+• Clears subscription prompts and paywalls
+• Works seamlessly with Safari and Brave browsers
+
+### 🔒 True Privacy, No Compromises
+
+**No-Logs Policy**
+• We never track your browsing
+• No personal data collection
+• All filtering happens locally on your device
+• Your privacy is our priority
+
+**Local VPN Technology**
+• Creates a secure local VPN on your device
+• DNS filtering blocks ads at the source
+• No external servers = no data exposure
+• Works on WiFi and cellular connections
+
+### ⚡ Smart Features
+
+**Intelligent Whitelist**
+• Easily allow sites that need full access
+• Import/export your whitelist
+• Per-site control at your fingertips
+
+**Auto-Updating Rules**
+• Stay protected against new trackers
+• Rules updated daily (Pro feature)
+• Community-driven protection
+
+### 💎 Pro Features
+
+Upgrade to Pro for enhanced protection:
+• Daily automatic rule updates
+• Multiple server regions
+• Custom DNS settings
+• Priority support
+• Support ongoing development
+
+### 🎯 Perfect For
+
+• Privacy-conscious users
+• Those tired of invasive ads
+• Anyone wanting faster browsing
+• Users seeking cleaner web experience
+
+### 📱 Easy Setup
+
+1. Download CleanView
+2. Enable VPN with one tap
+3. Activate Safari Content Blocker
+4. Enjoy clean, private browsing!
+
+### Key Features Summary:
+
+✓ Block ads & trackers
+✓ Remove visual annoyances
+✓ No-logs privacy policy
+✓ Local VPN protection
+✓ Whitelist management
+✓ Works with Safari & Brave
+✓ No account required
+✓ Battery efficient
+✓ Regular rule updates
+✓ Clean, modern interface
+
+### Subscription Information
+
+CleanView offers optional Pro subscriptions:
+• Monthly: $2.99/month
+• Yearly: $19.99/year (Save 44%)
+
+• Free trial available for new users
+• Cancel anytime through Settings
+• Subscriptions auto-renew unless cancelled
+• Payment via iTunes Account
+
+### Support
+
+We're here to help:
+• In-app support system
+• Email: support@example.com
+• FAQ: https://example.com/faq
+
+### Requirements
+
+• iOS 16.0 or later
+• Compatible with iPhone and iPad
+• Works on WiFi and cellular
+• 50MB storage space
+
+---
+
+## App Store Keywords (100 characters)
+ad blocker,vpn,privacy,safari,content blocker,tracker,no ads,clean,brave,filter,dns,security,fast
+
+## Categories
+Primary: Productivity
+Secondary: Utilities
+
+## Age Rating
+4+ (No objectionable content)
+
+## What's New (Version 1.0.0)
+• Initial release
+• Advanced ad & tracker blocking
+• Safari Content Blocker integration
+• Local VPN with DNS filtering
+• Whitelist management
+• Pro subscription options
+• Dark mode support
+• iOS 16+ optimized
+
+---
+
+Note: This description focuses on legitimate UX improvements and privacy protection without mentioning specific sites or circumvention capabilities.
